@@ -21,10 +21,10 @@ import edu.wpi.first.wpilibj.*;
  */
 public class  DriveWithJoysticks extends Command {
 	Joystick stick;
+	private final Gyro gyro = RobotMap.driveTrainGyro;
 	double x;
 	double y;
 	double z;
-	double gyro;
 
 	
     public DriveWithJoysticks() {
@@ -40,6 +40,7 @@ public class  DriveWithJoysticks extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	stick = new Joystick(0);
+    	gyro.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -48,7 +49,7 @@ public class  DriveWithJoysticks extends Command {
     	x=stick.getX();
     	y=stick.getY();
     	z=stick.getTwist();
-    	gyro = 0;
+    	
     	
     	if(Math.abs(x)<0.2)
     		x=0;
@@ -57,7 +58,7 @@ public class  DriveWithJoysticks extends Command {
     	if(Math.abs(z)<0.2)
     		z=0;
     	
-    	Robot.driveTrain.mecanumDrive(-x, y, z, gyro); 
+    	Robot.driveTrain.mecanumDrive(-x, y, z, -gyro.getAngle()); 
     	}
 
     // Make this return true when this Command no longer needs to run execute()
