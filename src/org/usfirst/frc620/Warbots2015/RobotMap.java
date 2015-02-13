@@ -42,6 +42,9 @@ public class RobotMap {
     public static GyroITG3200 driveTrainGyro3200;
     
     public static RobotDrive driveTrainRobotDrive;
+    
+    public static Compressor pnuematicsCompressor;
+    public static Solenoid pnuematicsSolenoid; 
 
     public static void init() {
     	
