@@ -75,6 +75,9 @@ public class RobotMap {
         driveTrainGyro = new Gyro(0);
         LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyro);
         driveTrainGyro.setSensitivity(0.007);
+        pickerlimitSwitch = new DigitalInput(3);
+        LiveWindow.addSensor("Picker", "limitSwitch", pickerlimitSwitch);
+        
         pnuematicsCompressor = new Compressor(0);
         
         

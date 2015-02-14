@@ -12,6 +12,7 @@
 package org.usfirst.frc620.Warbots2015.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc620.Warbots2015.Robot;
 import org.usfirst.frc620.Warbots2015.RobotMap;
@@ -70,6 +71,8 @@ public class  Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.mecanumDrive(drivex, drivey, drivez, turn);
+    	SmartDashboard.putNumber("angle", theta);
+    	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
     }
 
     // Make this return true when this Command no longer needs to run execute()
