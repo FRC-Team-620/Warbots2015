@@ -33,6 +33,7 @@ public class  DriveWithJoysticks extends Command {
 	Timer timer;
 	double start;
 	double now;
+	double throttle;
 	
 
 	
@@ -61,6 +62,7 @@ public class  DriveWithJoysticks extends Command {
     	x=stick.getX();
     	y=stick.getY();
     	z=stick.getTwist();
+    	throttle = -((stick.getThrottle()/2)+.5);
     	now = timer.getFPGATimestamp();
     	System.out.println("math: "+(now-start));
     	
@@ -73,7 +75,7 @@ public class  DriveWithJoysticks extends Command {
     	if(Math.abs(z)<0.2)
     		z=0;
     	
-    	Robot.driveTrain.mecanumDrive(-x, y, z, -theta); 
+    	Robot.driveTrain.mecanumDrive(-x*throttle,y*throttle, z*throttle, -theta); 
     	SmartDashboard.putNumber("angle", theta);
     	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
     	}
