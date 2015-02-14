@@ -12,7 +12,8 @@
 package org.usfirst.frc620.Warbots2015.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc620.Warbots2015.Robot;
+
+//import org.usfirst.frc620.Warbots2015.Robot;
 
 /**
  *

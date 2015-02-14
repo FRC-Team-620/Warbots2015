@@ -15,18 +15,21 @@ import org.usfirst.frc620.Warbots2015.Robot;
 import org.usfirst.frc620.Warbots2015.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.*;
 
-import org.usfirst.frc620.Warbots2015.subsystems.GyroITG3200;
+//import org.usfirst.frc620.Warbots2015.subsystems.GyroITG3200;
 /**
  *
  */
 public class  DriveWithJoysticks extends Command {
 	Joystick stick;
-	private final GyroITG3200 gyro = RobotMap.driveTrainGyro3200;
+	private final Gyro gyro = RobotMap.driveTrainGyro;
 	double x;
 	double y;
 	double z;
+	double theta;
+	
 
 	
     public DriveWithJoysticks() {
@@ -51,7 +54,7 @@ public class  DriveWithJoysticks extends Command {
     	x=stick.getX();
     	y=stick.getY();
     	z=stick.getTwist();
-    	
+    	theta = gyro.getAngle()%360;
     	
     	if(Math.abs(x)<0.2)
     		x=0;
@@ -60,7 +63,8 @@ public class  DriveWithJoysticks extends Command {
     	if(Math.abs(z)<0.2)
     		z=0;
     	
-    	Robot.driveTrain.mecanumDrive(-x, y, z, -gyro.getRotationZ()); 
+    	Robot.driveTrain.mecanumDrive(-x, y, z, -theta); 
+    	SmartDashboard.putNumber("angle", theta);
     	}
 
     // Make this return true when this Command no longer needs to run execute()
