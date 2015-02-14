@@ -34,7 +34,9 @@ public class DriveToAutoZone extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new Drive(5,.25,0,0));
-    	addSequential(new Drive(5,0,.25,0));
+    	addSequential(new Drive(1,.5,0,0));
+    	addSequential(new Drive(1,0,.25,0));
+    	addSequential(new Drive(1,-.5,0,0));
+    	addSequential(new Drive(1,0,-.25,0));
     }
 }

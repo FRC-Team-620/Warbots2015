@@ -88,6 +88,7 @@ public class Robot extends IterativeRobot {
         autoChooser.addObject("Drop tote in Auto Zone", new DropToteInAutoZone());
         autoChooser.addObject("Pull off one can", new PullOffOneCan());
         autoChooser.addObject("Pull off two cans", new PullOffTwoCans());
+        autoChooser.addObject("Do nothing", new doNothing());
         SmartDashboard.putData("Autonomous Mode Chooser", autoChooser);
          
         // instantiate the command used for the autonomous period
