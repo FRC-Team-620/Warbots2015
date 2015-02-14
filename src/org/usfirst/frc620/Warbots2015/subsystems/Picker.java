@@ -14,6 +14,7 @@ package org.usfirst.frc620.Warbots2015.subsystems;
 import org.usfirst.frc620.Warbots2015.RobotMap;
 import org.usfirst.frc620.Warbots2015.commands.*;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

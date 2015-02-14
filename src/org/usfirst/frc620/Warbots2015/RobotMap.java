@@ -42,6 +42,9 @@ public class RobotMap {
     public static Gyro driveTrainGyro;
     public static GyroITG3200 driveTrainGyro3200;
     
+    public static DigitalInput pickerlimitSwitch;
+
+    
     public static RobotDrive driveTrainRobotDrive;
     
     public static Compressor pnuematicsCompressor;
