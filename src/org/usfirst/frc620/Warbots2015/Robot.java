@@ -85,6 +85,9 @@ public class Robot extends IterativeRobot {
         autoChooser = new SendableChooser();
         autoChooser.addDefault("Drive to Auto Zone", new DriveToAutoZone());
         autoChooser.addObject("Drop can in Auto Zone", new DropCanInAutoZone());
+        autoChooser.addObject("Drop tote in Auto Zone", new DropToteInAutoZone());
+        autoChooser.addObject("Pull off one can", new PullOffOneCan());
+        autoChooser.addObject("Pull off two cans", new PullOffTwoCans());
         SmartDashboard.putData("Autonomous Mode Chooser", autoChooser);
          
         // instantiate the command used for the autonomous period
