@@ -12,6 +12,7 @@
 package org.usfirst.frc620.Warbots2015.commands;
 
 import org.usfirst.frc620.Warbots2015.Robot;
+
 import org.usfirst.frc620.Warbots2015.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,6 +30,9 @@ public class  DriveWithJoysticks extends Command {
 	double y;
 	double z;
 	double theta;
+	Timer timer;
+	double start;
+	double now;
 	
 
 	
@@ -46,6 +50,9 @@ public class  DriveWithJoysticks extends Command {
     protected void initialize() {
     	stick = new Joystick(0);
     	gyro.reset();
+    	//timer.start();
+    	start = timer.getFPGATimestamp();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -54,7 +61,10 @@ public class  DriveWithJoysticks extends Command {
     	x=stick.getX();
     	y=stick.getY();
     	z=stick.getTwist();
-    	theta = gyro.getAngle()%360;
+    	now = timer.getFPGATimestamp();
+    	System.out.println("math: "+(now-start));
+    	
+    	theta = gyro.getAngle()%360 - .042*(now-start);
     	
     	if(Math.abs(x)<0.2)
     		x=0;
@@ -65,6 +75,7 @@ public class  DriveWithJoysticks extends Command {
     	
     	Robot.driveTrain.mecanumDrive(-x, y, z, -theta); 
     	SmartDashboard.putNumber("angle", theta);
+    	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
     	}
 
     // Make this return true when this Command no longer needs to run execute()
