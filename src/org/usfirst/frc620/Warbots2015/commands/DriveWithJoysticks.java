@@ -16,12 +16,14 @@ import org.usfirst.frc620.Warbots2015.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.*;
+
+import org.usfirst.frc620.Warbots2015.subsystems.GyroITG3200;
 /**
  *
  */
 public class  DriveWithJoysticks extends Command {
 	Joystick stick;
-	private final Gyro gyro = RobotMap.driveTrainGyro;
+	private final GyroITG3200 gyro = RobotMap.driveTrainGyro3200;
 	double x;
 	double y;
 	double z;
@@ -58,7 +60,7 @@ public class  DriveWithJoysticks extends Command {
     	if(Math.abs(z)<0.2)
     		z=0;
     	
-    	Robot.driveTrain.mecanumDrive(-x*.5, y*.5, z*.5, -gyro.getAngle()); 
+    	Robot.driveTrain.mecanumDrive(-x, y, z, -gyro.getRotationZ()); 
     	}
 
     // Make this return true when this Command no longer needs to run execute()
