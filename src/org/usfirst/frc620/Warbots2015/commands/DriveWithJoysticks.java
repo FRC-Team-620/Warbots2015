@@ -13,11 +13,13 @@ package org.usfirst.frc620.Warbots2015.commands;
 
 import org.usfirst.frc620.Warbots2015.Robot;
 
-import org.usfirst.frc620.Warbots2015.RobotMap;
 
+import org.usfirst.frc620.Warbots2015.RobotMap;
+import org.usfirst.frc620.Warbots2015.commands.turnLeft;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 //import org.usfirst.frc620.Warbots2015.subsystems.GyroITG3200;
 /**
@@ -34,8 +36,11 @@ public class  DriveWithJoysticks extends Command {
 	double start;
 	double now;
 	double throttle;
+	JoystickButton button3;
+	JoystickButton button4;
+	JoystickButton button5;
+	JoystickButton button6;
 	
-
 	
     public DriveWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
@@ -53,7 +58,16 @@ public class  DriveWithJoysticks extends Command {
     	gyro.reset();
     	//timer.start();
     	start = timer.getFPGATimestamp();
+    	button3 = new JoystickButton(stick,3);
+    	button4 = new JoystickButton(stick,4);
+    	button5 = new JoystickButton(stick,5);
+    	button6 = new JoystickButton(stick,6);   
+    	SmartDashboard.putString("3", "off");
+    	SmartDashboard.putString("4", "off");
     	
+    	SmartDashboard.putString("5", "off");
+    	
+    	SmartDashboard.putString("6", "off");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -74,7 +88,23 @@ public class  DriveWithJoysticks extends Command {
     		y=0;
     	if(Math.abs(z)<0.2)
     		z=0;
-    	
+    	if(button3.get()){
+    		SmartDashboard.putString("3", "on");
+    		new turnLeft(1);
+    	}
+    	if(button4.get())
+    	{
+    		SmartDashboard.putString("4", "on");
+    		new turnRight(1);
+    	}
+    	if(button5.get()){
+    		SmartDashboard.putString("5", "on");
+    		new turnAroundLeft(1);
+    	}
+    	if(button6.get()){
+    		SmartDashboard.putString("6", "on");
+    		new turnAroundRight(1);
+    	}
     	Robot.driveTrain.mecanumDrive(-x*throttle,y*throttle, z*throttle, -theta); 
     	SmartDashboard.putNumber("angle", theta);
     	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
