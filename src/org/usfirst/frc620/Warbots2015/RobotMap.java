@@ -48,6 +48,8 @@ public class RobotMap {
     
     public static Compressor pnuematicsCompressor;
     public static Solenoid pnuematicsSolenoid; 
+    
+    public static Talon pickerPickerMotor;
 
     public static void init() {
     	
@@ -79,6 +81,9 @@ public class RobotMap {
         driveTrainGyro.setSensitivity(0.007);
         pickerlimitSwitch = new DigitalInput(3);
         LiveWindow.addSensor("Picker", "limitSwitch", pickerlimitSwitch);
+        
+        pickerPickerMotor = new Talon(0);
+        LiveWindow.addActuator("Picker", "PickerMotor", (Talon) pickerPickerMotor);
         
         pnuematicsCompressor = new Compressor(0);
         
