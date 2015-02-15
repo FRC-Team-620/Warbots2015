@@ -140,7 +140,7 @@ Children:
           default: '0'
           name: Input Channel (Digital)
           validators: &id005 [DigitalChannel]
-          value: '0'
+          value: '1'
       Base: Limit Switch
       Name: limitSwitchBottom
     - Children: []
@@ -166,7 +166,7 @@ Children:
           default: '0'
           name: Input Channel (Digital)
           validators: *id005
-          value: '1'
+          value: '0'
       Base: Limit Switch
       Name: limitSwitchTop
     Properties:
@@ -382,8 +382,9 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Team_A\workspace',
-    extension: null, folder: true, name: Eclipse Workspace, validators: null, value: 'C:\Users\Team_A\workspace'}
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Team
+      B\workspace', extension: null, folder: true, name: Eclipse Workspace, validators: null,
+    value: 'C:\Users\Team_A\workspace'}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
