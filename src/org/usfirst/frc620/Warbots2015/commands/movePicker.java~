@@ -45,9 +45,21 @@ public class  movePicker extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	if(limitBottom.get()&&(xbox.getRawAxis(2))>0){
+    		
     		Robot.picker.setSpeed(xbox.getRawAxis(2));
-    	
+    		
+    	} else if(limitTop.get()&&(xbox.getRawAxis(2)<0)){
+    		
+    		Robot.picker.setSpeed(xbox.getRawAxis(2));
+    		
+    	} else if((limitBottom.get()&&(xbox.getRawAxis(2))<0)||(limitTop.get()&&(xbox.getRawAxis(2)>0))){
+    		
+    		Robot.picker.setSpeed(0);
+    		
+    	} else {    		
+    		Robot.picker.setSpeed(xbox.getRawAxis(2));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
