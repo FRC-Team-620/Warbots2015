@@ -43,7 +43,6 @@ public class RobotMap {
     public static GyroITG3200 driveTrainGyro3200;
     
     public static DigitalInput pickerlimitSwitch;
-
     
     public static RobotDrive driveTrainRobotDrive;
     
@@ -95,7 +94,6 @@ public class RobotMap {
         driveTrainCANTalonFL = new CANTalon(2);
         driveTrainCANTalonFR = new CANTalon(3);
         driveTrainCANTalonRR = new CANTalon(4);
-
         
         driveTrainGyro3200 = new GyroITG3200(I2C.Port.kOnboard);
         driveTrainGyro3200.initialize();

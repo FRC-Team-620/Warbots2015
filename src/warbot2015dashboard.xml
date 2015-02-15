@@ -1,5 +1,34 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Drive Mode Chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="421" y="366"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="0" y="0"/>
+		<width>420</width>
+		<height>303</height>
+	</static-widget>
+	<widget field="field centric" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="417" y="345"/>
+	</widget>
+	<widget field="Drive Type Chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="417" y="278"/>
+	</widget>
+	<widget field="6" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="440"/>
+	</widget>
+	<widget field="5" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="419"/>
+	</widget>
+	<widget field="4" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="398"/>
+	</widget>
+	<widget field="3" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="377"/>
+	</widget>
+	<widget field="resetGyro" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="343"/>
+	</widget>
 	<widget field="angle" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="322"/>
 	</widget>
@@ -14,15 +43,75 @@
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
 		<location x="434" y="245"/>
 	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="1" y="-13"/>
-		<width>415</width>
-		<height>334</height>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="434" y="245"/>
 	</static-widget>
 </dashboard>
 <live-window>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="AnalogInput[0]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="6" y="16"/>
+			<height>20</height>
+			<width>88</width>
+		</widget>
+		<location x="0" y="72"/>
+		<width>100</width>
+		<height>43</height>
+	</widget>
+	<widget field="Picker" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="limitSwitch" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="6" y="16"/>
+			<height>20</height>
+			<width>69</width>
+		</widget>
+		<location x="0" y="48"/>
+		<width>81</width>
+		<height>43</height>
+	</widget>
+	<widget field="Pnuematics" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Solenoid" type="Solenoid" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+			<location x="6" y="16"/>
+			<height>23</height>
+			<width>98</width>
+		</widget>
+		<location x="0" y="24"/>
+		<width>110</width>
+		<height>46</height>
+	</widget>
+	<widget field="DriveTrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="PWMJagRR" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="16"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<widget field="Gyro3200" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="6" y="62"/>
+			<height>150</height>
+			<width>293</width>
+		</widget>
+		<widget field="PWMJagFR" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="212"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<widget field="Gyro" type="Gyro" class="edu.wpi.first.smartdashboard.gui.elements.Compass">
+			<location x="6" y="258"/>
+			<height>150</height>
+			<width>293</width>
+		</widget>
+		<widget field="PWMJagRL" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="408"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<widget field="PWMJagFL" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="6" y="454"/>
+			<height>46</height>
+			<width>293</width>
+		</widget>
+		<location x="0" y="0"/>
+		<width>305</width>
+		<height>507</height>
+	</widget>
 </live-window>
-	<hidden field="DriveWithJoysticks"/>
-	<hidden field="doNothing"/>
-	<hidden field="Autonomous Command"/>
 </xml>
