@@ -11,11 +11,10 @@
 
 package org.usfirst.frc620.Warbots2015.subsystems;
 
+import org.usfirst.frc620.Warbots2015.Robot;
 import org.usfirst.frc620.Warbots2015.RobotMap;
-
 import org.usfirst.frc620.Warbots2015.commands.*;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -42,6 +41,9 @@ public class Picker extends Subsystem {
 	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    public void setSpeed(double speed){
+    	Robot.picker.pickerMotor.set(speed);
     }
 }
 
