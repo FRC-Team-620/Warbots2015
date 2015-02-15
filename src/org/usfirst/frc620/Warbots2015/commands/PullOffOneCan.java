@@ -34,5 +34,10 @@ public class PullOffOneCan extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	addSequential(new Drive(1,0,.5,0));
+    	addSequential(new extend());
+    	addSequential(new movePicker());
+    	addSequential(new retract());
+    	addSequential(new Drive(1,0,-.5,0));
     }
 }
