@@ -43,7 +43,8 @@ public class RobotMap {
     public static Gyro driveTrainGyro;
     public static GyroITG3200 driveTrainGyro3200;
     
-    public static DigitalInput pickerlimitSwitch;
+    public static DigitalInput pickerlimitSwitchBottom;
+    public static DigitalInput pickerlimitSwitchTop;
     
     public static RobotDrive driveTrainRobotDrive;
     
@@ -80,11 +81,14 @@ public class RobotMap {
         driveTrainGyro = new Gyro(0);
         LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyro);
         driveTrainGyro.setSensitivity(0.007);
-        pickerlimitSwitch = new DigitalInput(3);
-        LiveWindow.addSensor("Picker", "limitSwitch", pickerlimitSwitch);
+        pickerlimitSwitchBottom = new DigitalInput(0);
+        LiveWindow.addSensor("Picker", "limitSwitchBottom", pickerlimitSwitchBottom);
         
         pickerPickerMotor = new Talon(0);
         LiveWindow.addActuator("Picker", "PickerMotor", (Talon) pickerPickerMotor);
+        
+        pickerlimitSwitchTop = new DigitalInput(1);
+        LiveWindow.addSensor("Picker", "limitSwitchTop", pickerlimitSwitchTop);
         
         pneumaticsCompressor = new Compressor(0);
         
