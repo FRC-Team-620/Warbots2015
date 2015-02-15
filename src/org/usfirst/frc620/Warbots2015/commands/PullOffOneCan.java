@@ -36,8 +36,9 @@ public class PullOffOneCan extends CommandGroup {
         // arm.
     	addSequential(new Drive(1,0,.5,0));
     	addSequential(new extend());
-    	addSequential(new movePicker());
+    	addSequential(new liftPicker());
     	addSequential(new retract());
     	addSequential(new Drive(1,0,-.5,0));
+    	addSequential(new lowerPicker());
     }
 }
