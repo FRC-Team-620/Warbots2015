@@ -82,7 +82,7 @@ public class  DriveWithJoysticks extends Command {
     		x=0;
     	if(Math.abs(y)<0.2)
     		y=0;
-    	if(Math.abs(z)<0.2)
+    	if(Math.abs(z)<0.4)
     		z=0;
     	if(button3.get()){
     		new turnLeft(1);
