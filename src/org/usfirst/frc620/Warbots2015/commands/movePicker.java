@@ -38,6 +38,10 @@ public class  movePicker extends Command {
     		
     		Robot.picker.setSpeed(0);
     		
+    	} else if((limitBottom.get() == true)||(limitTop.get() == true)){
+    		
+    		Robot.picker.setSpeed(xbox.getRawAxis(2));
+    		
     	} else {    		
     		Robot.picker.setSpeed(xbox.getRawAxis(2));
     	}
