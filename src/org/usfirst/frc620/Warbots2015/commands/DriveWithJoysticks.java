@@ -34,6 +34,7 @@ public class  DriveWithJoysticks extends Command {
     
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("Drive with joysticks init");
     	stick = new Joystick(0);
     	gyro.reset();
     	//timer.start();
@@ -53,7 +54,7 @@ public class  DriveWithJoysticks extends Command {
     	throttle = 1-((stick.getThrottle()/2)+.5);
 
     	now = timer.getFPGATimestamp();
-    	System.out.println("math: "+(now-start));
+    	//System.out.println("math: "+(now-start));
     	
     	theta = (gyro.getAngle()%360) - (.042*(now-start));
     	Robot.driveWithJoysticks.fieldCentric = (boolean) Robot.fieldCentricChooser.getSelected();

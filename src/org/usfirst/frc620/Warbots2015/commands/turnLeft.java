@@ -38,7 +38,7 @@ public class  turnLeft extends Command {
 
     protected void execute() {
     	angle = RobotMap.driveTrainGyro.getAngle();
-    	RobotMap.driveTrainRobotDrive.mecanumDrive_Polar(0, 0, -.85);
+    	RobotMap.driveTrainRobotDrive.mecanumDrive_Polar(0, 0, -.35);
     	SmartDashboard.putNumber("angle", angle);
     	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
     }
