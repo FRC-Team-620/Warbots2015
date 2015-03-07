@@ -47,7 +47,7 @@ public class  lowerPicker extends Command {
 	}
 
 	protected boolean isFinished() {
-		return (now >= end);
+		return (now >= end) || RobotMap.pickerlimitSwitchBottom.get();
 	}
 
 	protected void end() {

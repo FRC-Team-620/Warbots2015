@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc620.Warbots2015.Robot;
 import org.usfirst.frc620.Warbots2015.RobotMap;
+import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 public class  liftPicker extends Command {
 	double start, now, end;
