@@ -80,6 +80,29 @@ public class  DriveWithJoysticks extends Command {
     		Robot.driveTrain.mecanumDrive(-x*throttle,y*throttle, z*throttle, 0); 
     	
     	SmartDashboard.putNumber("angle", theta);
+    	SmartDashboard.putBoolean(  "IMU_Connected",        imu.isConnected());
+        SmartDashboard.putBoolean(  "IMU_IsCalibrating",    imu.isCalibrating());
+        SmartDashboard.putNumber(   "IMU_Yaw",              imu.getYaw());
+        SmartDashboard.putNumber(   "IMU_Pitch",            imu.getPitch());
+        SmartDashboard.putNumber(   "IMU_Roll",             imu.getRoll());
+        SmartDashboard.putNumber(   "IMU_CompassHeading",   imu.getCompassHeading());
+        SmartDashboard.putNumber(   "IMU_Update_Count",     imu.getUpdateCount());
+        SmartDashboard.putNumber(   "IMU_Byte_Count",       imu.getByteCount());
+
+        // If you are using the IMUAdvanced class, you can also access the following
+        // additional functions, at the expense of some extra processing
+        // that occurs on the CRio processor
+        
+        SmartDashboard.putNumber(   "IMU_Accel_X",          imu.getWorldLinearAccelX());
+        SmartDashboard.putNumber(   "IMU_Accel_Y",          imu.getWorldLinearAccelY());
+        SmartDashboard.putBoolean(  "IMU_IsMoving",         imu.isMoving());
+        SmartDashboard.putNumber(   "IMU_Temp_C",           imu.getTempC());
+        
+        SmartDashboard.putNumber(   "Velocity_X",       	imu.getVelocityX() );
+        SmartDashboard.putNumber(   "Velocity_Y",       	imu.getVelocityY() );
+        SmartDashboard.putNumber(   "Displacement_X",       imu.getDisplacementX() );
+        SmartDashboard.putNumber(   "Displacement_Y",       imu.getDisplacementY() );
+    	SmartDashboard.putData("Gyro", RobotMap.imu);
     	SmartDashboard.putData("Gyro", RobotMap.imu);
     	
     }
