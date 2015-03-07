@@ -52,7 +52,7 @@ public class  Drive extends Command {
     protected void execute() {
     	Robot.driveTrain.mecanumDrive(drivex, drivey, drivez, turn);
     	SmartDashboard.putNumber("angle", theta);
-    	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
+    	SmartDashboard.putData("Gyro", RobotMap.imu);
     }
 
     protected boolean isFinished() {

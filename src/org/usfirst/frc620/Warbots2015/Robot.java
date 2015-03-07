@@ -68,8 +68,7 @@ public class Robot extends IterativeRobot {
 		//		NIVision.IMAQdxConfigureGrab(session);
 
 		//gyro
-		RobotMap.driveTrainGyro3200.reset();
-		RobotMap.driveTrainGyro.reset();
+		RobotMap.imu.zeroYaw();
 
 		//autonomous mode sendable chooser
 		autoChooser = new SendableChooser();

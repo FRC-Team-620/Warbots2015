@@ -31,18 +31,18 @@ public class  turnAroundRight extends Command {
     }
     
     protected void initialize() {
-    	initial  = RobotMap.driveTrainGyro.getAngle();
+    	initial  = RobotMap.imu.getYaw();
     }
 
     protected void execute() {
-    	angle = RobotMap.driveTrainGyro.getAngle();
+    	angle = RobotMap.imu.getYaw();
     	RobotMap.driveTrainRobotDrive.mecanumDrive_Polar(0, 0, .35);
     	SmartDashboard.putNumber("angle", angle);
-    	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
+    	SmartDashboard.putData("Gyro", RobotMap.imu);
     }
 
     protected boolean isFinished() {
-        angle = RobotMap.driveTrainGyro.getAngle();
+        angle = RobotMap.imu.getYaw();
     	return initial+180 <= angle+5 && initial+180 >= angle-5;
     }
 

@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc620.Warbots2015.Robot;
 import org.usfirst.frc620.Warbots2015.RobotMap;
 
+import com.kauailabs.navx_mxp.AHRS;
+
 /**
  *
  */
@@ -18,10 +20,11 @@ public class  resetGyro extends Command {
     }
    
     protected void initialize() {
+    	
     }
 
     protected void execute() {
-    	RobotMap.driveTrainGyro.reset();
+    	RobotMap.imu.zeroYaw();;
     	
     }
 

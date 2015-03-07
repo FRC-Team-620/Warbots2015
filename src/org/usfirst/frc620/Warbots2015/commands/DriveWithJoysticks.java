@@ -6,6 +6,9 @@ import org.usfirst.frc620.Warbots2015.Robot;
 
 import org.usfirst.frc620.Warbots2015.RobotMap;
 import org.usfirst.frc620.Warbots2015.commands.turnLeft;
+
+import com.kauailabs.navx_mxp.AHRS;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.*;
@@ -16,9 +19,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class  DriveWithJoysticks extends Command {
 	Joystick stick;
-	private final Gyro gyro = RobotMap.driveTrainGyro;
+	private final AHRS imu = RobotMap.imu;
 	double x, y, z, theta, throttle; //joystick
-	double start, now; //time
+	//double start, now; //time
 	Timer timer;
 	public JoystickButton button2;
 	JoystickButton button3, button4, button5, button6;
@@ -36,9 +39,9 @@ public class  DriveWithJoysticks extends Command {
     protected void initialize() {
     	System.out.println("Drive with joysticks init");
     	stick = new Joystick(0);
-    	gyro.reset();
+    	imu.zeroYaw();
     	//timer.start();
-    	start = timer.getFPGATimestamp();
+    	//start = timer.getFPGATimestamp();
     	button3 = new JoystickButton(stick,2);
     	button3 = new JoystickButton(stick,3);
     	button4 = new JoystickButton(stick,4);
@@ -53,10 +56,10 @@ public class  DriveWithJoysticks extends Command {
     	z=stick.getTwist();
     	throttle = 1-((stick.getThrottle()/2)+.5);
 
-    	now = timer.getFPGATimestamp();
+    	//now = timer.getFPGATimestamp();
     	//System.out.println("math: "+(now-start));
     	
-    	theta = (gyro.getAngle()%360) - (.042*(now-start));
+    	theta = imu.getYaw();
     	Robot.driveWithJoysticks.fieldCentric = (boolean) Robot.fieldCentricChooser.getSelected();
     	
     	//dead zones
@@ -77,7 +80,7 @@ public class  DriveWithJoysticks extends Command {
     		Robot.driveTrain.mecanumDrive(-x*throttle,y*throttle, z*throttle, 0); 
     	
     	SmartDashboard.putNumber("angle", theta);
-    	SmartDashboard.putData("Gyro", RobotMap.driveTrainGyro);
+    	SmartDashboard.putData("Gyro", RobotMap.imu);
     	
     }
 

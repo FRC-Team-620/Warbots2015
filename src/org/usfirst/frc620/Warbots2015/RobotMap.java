@@ -1,9 +1,6 @@
 package org.usfirst.frc620.Warbots2015;
     
 import edu.wpi.first.wpilibj.*;
-
-
-
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.can.*;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -12,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Vector;
 
 import org.usfirst.frc620.Warbots2015.subsystems.GyroITG3200;
+
+import com.kauailabs.navx_mxp.AHRS;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -30,8 +29,12 @@ public class RobotMap {
     public static CANTalon driveTrainCANTalonRR;
     public static CANTalon driveTrainCANTalonFL;
     
-    public static Gyro driveTrainGyro;
-    public static GyroITG3200 driveTrainGyro3200;
+//    public static Gyro driveTrainGyro;
+//    public static GyroITG3200 driveTrainGyro3200;
+    public static AHRS imu;
+	public static SerialPort serialPort;
+
+    
     
     public static DigitalInput pickerlimitSwitchBottom;
     public static DigitalInput pickerlimitSwitchTop;
@@ -71,9 +74,16 @@ public class RobotMap {
         driveTrainRobotDrive.setMaxOutput(1.0);
 
         //gyro
-        driveTrainGyro = new Gyro(0);
-        LiveWindow.addSensor("DriveTrain", "Gyro", driveTrainGyro);
-        driveTrainGyro.setSensitivity(0.007);
+        try {
+			serialPort = new SerialPort(57600, SerialPort.Port.kMXP);
+			byte update_rate_hz = 50;
+			imu = new AHRS(serialPort, update_rate_hz);
+		} catch (Exception ex) {
+
+		}
+		if (imu != null) {
+			LiveWindow.addSensor("IMU", "Gyro", imu);
+		}
         
         //picker motor
         pickerPickerMotor = new Talon(0);
@@ -102,9 +112,7 @@ public class RobotMap {
         driveTrainCANTalonFR = new CANTalon(3);
         driveTrainCANTalonRR = new CANTalon(4);
         
-        driveTrainGyro3200 = new GyroITG3200(I2C.Port.kOnboard);
-        driveTrainGyro3200.initialize();
-        LiveWindow.addSensor("DriveTrain", "Gyro3200", driveTrainGyro3200);
+       
         
 //        driveTrainRobotDrive = new RobotDrive(driveTrainCANTalonFL, driveTrainCANTalonRL,
 //                driveTrainCANTalonFR, driveTrainCANTalonRR);;
