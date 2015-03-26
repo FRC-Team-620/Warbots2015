@@ -20,6 +20,9 @@ public class DropCanInAutoZone extends CommandGroup {
     public  DropCanInAutoZone() {
     	//
     	addSequential(new Drive(2.5,.5,0,0));
+    	addSequential(new extend());
+    	addSequential(new lowerPicker());
     	addSequential(new Drive(2.5,-.5,0,0));
+    	addSequential(new retract());
     }
 }

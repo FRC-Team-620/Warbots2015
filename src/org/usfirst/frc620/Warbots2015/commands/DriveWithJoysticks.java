@@ -18,13 +18,15 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  *
  */
 public class  DriveWithJoysticks extends Command {
-	Joystick stick;
+	Joystick stick, xbox;
+	
 	private final AHRS imu = RobotMap.imu;
 	double x, y, z, theta, throttle; //joystick
 	//double start, now; //time
 	Timer timer;
 	public JoystickButton button2;
 	JoystickButton button3, button4, button5, button6;
+	JoystickButton pneumaticsExtend, pneumaticsRetract;
 	public boolean fieldCentric;
 	
 	
@@ -38,7 +40,9 @@ public class  DriveWithJoysticks extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	System.out.println("Drive with joysticks init");
-    	stick = new Joystick(0);
+    	stick = Robot.oi.getJoystick1();
+    	xbox = Robot.oi.getxbox();
+
     	imu.zeroYaw();
     	//timer.start();
     	//start = timer.getFPGATimestamp();
@@ -47,6 +51,10 @@ public class  DriveWithJoysticks extends Command {
     	button4 = new JoystickButton(stick,4);
     	button5 = new JoystickButton(stick,5);
     	button6 = new JoystickButton(stick,6);
+    	
+    	pneumaticsExtend = new JoystickButton(Robot.oi.getxbox(), 1);
+    	pneumaticsRetract = new JoystickButton(Robot.oi.getxbox(), 2);
+
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -72,6 +80,10 @@ public class  DriveWithJoysticks extends Command {
     	if(button4.get()) new turnRight(1);
     	if(button5.get()) new turnAroundLeft(1);
     	if(button6.get()) new turnAroundRight(1);
+    	
+    	if (pneumaticsExtend.get()) new extend();
+    	if (pneumaticsRetract.get()) new retract();
+
     	
     	//field centric vs regular drive
     	if(fieldCentric)

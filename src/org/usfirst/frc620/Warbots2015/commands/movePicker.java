@@ -31,7 +31,7 @@ public class  movePicker extends Command {
 
 	protected void initialize() {
 		done = false;
-		xbox = new Joystick(1);
+		xbox = Robot.oi.getxbox();
 		limitBottom = RobotMap.pickerlimitSwitchBottom;
 		limitTop = RobotMap.pickerlimitSwitchTop;
 		button5 = new JoystickButton(xbox,5);
