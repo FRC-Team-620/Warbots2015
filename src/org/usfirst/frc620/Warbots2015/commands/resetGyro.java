@@ -24,7 +24,7 @@ public class  resetGyro extends Command {
     }
 
     protected void execute() {
-    	RobotMap.imu.zeroYaw();;
+    	RobotMap.imu.zeroYaw();
     	
     }
 
