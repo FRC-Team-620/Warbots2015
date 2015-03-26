@@ -133,8 +133,8 @@ public class RobotMap {
                  driveTrainCANTalonRR);
         //}
         
-        driveTrainRobotDrive.setInvertedMotor(MotorType.kFrontLeft, true);
-        driveTrainRobotDrive.setInvertedMotor(MotorType.kRearLeft, true);
+        driveTrainRobotDrive.setInvertedMotor(MotorType.kFrontRight, true);
+        driveTrainRobotDrive.setInvertedMotor(MotorType.kRearRight, true);
         
         driveTrainRobotDrive.setSafetyEnabled(true);
         driveTrainRobotDrive.setExpiration(0.1);
