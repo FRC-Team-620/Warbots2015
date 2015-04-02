@@ -12,9 +12,11 @@ import edu.wpi.first.wpilibj.Joystick.RumbleType;
 public class  movePicker extends Command {
 	double axis1;
 	boolean done;
-	Joystick xbox;
+	Joystick xbox, joystick;
 	DigitalInput limitBottom, limitTop;
 	JoystickButton button2,button3,button4,button5,button6;
+	JoystickButton buttonLift, buttonLower;
+	JoystickButton reverse;
 	Joystick.RumbleType kLeftRumble;
 	Joystick.RumbleType kRightRumble;
 
@@ -32,10 +34,14 @@ public class  movePicker extends Command {
 	protected void initialize() {
 		done = false;
 		xbox = Robot.oi.getxbox();
+		//joystick = Robot.oi.getJoystick1();
 		limitBottom = RobotMap.pickerlimitSwitchBottom;
 		limitTop = RobotMap.pickerlimitSwitchTop;
 		button5 = new JoystickButton(xbox,5);
 		button6 = new JoystickButton(xbox,6);
+		reverse = new JoystickButton(xbox,8);
+//		buttonLift = new JoystickButton(joystick, 7);
+//		buttonLower = new JoystickButton(joystick,8);
 		System.out.println("movePicker init");
 		axis1 = 0;
 
@@ -44,22 +50,44 @@ public class  movePicker extends Command {
 	protected void execute() {
 		SmartDashboard.getBoolean("Bottom Limit Switch", RobotMap.pickerlimitSwitchBottom.get());
 		SmartDashboard.getBoolean("Upper Limit Switch", RobotMap.pickerlimitSwitchTop.get());
-		if(button5.get()) {
-			new lowerPicker(1.5414012738853503184713375796178, true);
-			System.out.println("button5");
-			done = true;
+
+		System.out.println("Bottom Limit Switch: " + RobotMap.pickerlimitSwitchBottom.get());
+		System.out.println("Top Limit Switch: " + RobotMap.pickerlimitSwitchTop.get());
+
+		double shutup = Math.abs(xbox.getRawAxis(1));
+		if(reverse.get()) {
+			shutup = -shutup;
 		}
 		else if(button6.get()) {
-			new liftPicker(1.5414012738853503184713375796178, true);
-			System.out.println("button6");
-			done = true;
+//			new liftPicker(1.5414012738853503184713375796178, true);
+//			System.out.println("button6");
+//			done = true;
 		}
 
 		else {
-			if(limitBottom.get()&&(xbox.getRawAxis(1))>0){
-				Robot.picker.setSpeed(0);
-			} else {
-				Robot.picker.setSpeed(xbox.getRawAxis(1));
+//			if(limitBottom.get()&&(xbox.getRawAxis(1))<0){
+//				Robot.picker.setSpeed(0);
+//			} else if(limitTop.get()&&xbox.getRawAxis(1)>0){
+//				Robot.picker.setSpeed(0);
+			if(limitBottom.get()){										//may need to switch the signs depending on mechanism
+				System.out.println("limitBottom.get()");
+				Robot.picker.setSpeed(shutup);	//as the motor may be reversed
+			}else if(limitTop.get()){
+				Robot.picker.setSpeed(-shutup);
+				System.out.println("limitTop.get()");
+			}else{
+//				if(joystick.getPOV(0) == 0) {
+//					new liftPicker();
+//					System.out.println("POV 0");
+//				}
+//				if(joystick.getPOV(0) == 180) {
+//					new lowerPicker();
+//					System.out.println("POV 180");
+//
+//				}
+
+				if(Math.abs(xbox.getRawAxis(1))<0.2) Robot.picker.setSpeed(0);
+				else  Robot.picker.setSpeed(-xbox.getRawAxis(1));
 			}
 			//    	} else if(limitTop.get()&&(xbox.getRawAxis(1)<0)){
 			//    		Robot.picker.setSpeed(xbox.getRawAxis(1));
@@ -86,15 +114,20 @@ public class  movePicker extends Command {
 			//    	}
 
 		}
-
+		System.out.println("shutup = " + shutup);
+		
 	}
 
 	protected boolean isFinished() {
 		return done;
 	}
 
+	public int POVvalue() {
+		return joystick.getPOV(0);
+	}
+
 	protected void end() {
-		System.out.println("movePicker end");
+		Robot.picker.setSpeed(0);
 	}
 
 	protected void interrupted() {

@@ -7,6 +7,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveToAutoZone extends CommandGroup {
     
     public  DriveToAutoZone() {
-    	addSequential(new Drive(1, true, false));
+    	addSequential(new Drive(2, true, false));
     }
 }

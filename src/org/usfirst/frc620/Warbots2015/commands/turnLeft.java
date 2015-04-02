@@ -38,14 +38,15 @@ public class  turnLeft extends Command {
 
     protected void execute() {
     	angle = RobotMap.imu.getYaw();
-    	RobotMap.driveTrainRobotDrive.mecanumDrive_Polar(0, 0, -.5);
+    	//RobotMap.driveTrainRobotDrive.mecanumDrive_Polar(0, 0, -.5);
+    	Robot.driveTrain.mecanumDrive(0, 0,(Math.abs(1-((90-(angle+1))/90))) , 0);
     	SmartDashboard.putNumber("angle", angle);
     	SmartDashboard.putData("Gyro", RobotMap.imu);
     }
 
     protected boolean isFinished() {
     	angle = RobotMap.imu.getYaw();
-    	return (initial-90 <= angle+5 && initial-90 >= angle-5);
+    	return (initial-90 <= angle+2 && initial-90 >= angle-2);
     }
 
     protected void end() {

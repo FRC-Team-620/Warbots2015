@@ -73,14 +73,15 @@ public class  Drive extends Command {
     	if(distance){
     		imu.resetDisplacement();
     	}else if(isGyro){
-    		imu.zeroYaw();
+//    		imu.zeroYaw();
     	}else{
     	setTimeout(time);
     	}
     }
 
     protected void execute() {
-    	Robot.driveTrain.mecanumDrive(drivex, drivey, drivez, turn);
+    	if(isGyro) Robot.driveTrain.mecanumDrive(drivex, drivey, drivez*(Math.abs(1-((theta-(imu.getYaw()+1))/theta))), turn);
+    	else Robot.driveTrain.mecanumDrive(drivex, drivey, drivez, turn);
     	SmartDashboard.putNumber("angle", theta);
     	SmartDashboard.putData("Gyro", RobotMap.imu);
     }
@@ -88,12 +89,12 @@ public class  Drive extends Command {
     protected boolean isFinished() {
         if(distance){
         	if (xy) {
-        		return (imu.getDisplacementX() > dis);
+        		return (Math.abs(imu.getDisplacementX()) > dis);
         	} else {
-        		return (imu.getDisplacementY() > dis);
+        		return (Math.abs(imu.getDisplacementY()) > dis);
         	}
         }else if(isGyro){
-        	return (imu.getYaw() <= theta+5 && imu.getYaw() >= theta-5);
+        	return (Math.abs(imu.getYaw() - theta) <= 1.5);
         }else{
     	return isTimedOut();
         }

@@ -39,7 +39,8 @@ public class  turnAroundLeft extends Command {
 
     protected void execute() {
     	angle = RobotMap.imu.getYaw();
-    	RobotMap.driveTrainRobotDrive.mecanumDrive_Polar(0, 0, -.5);
+    	//RobotMap.driveTrainRobotDrive.mecanumDrive_Polar(0, 0, -.5);
+    	Robot.driveTrain.mecanumDrive(0, 0,(Math.abs(1-((180-(angle+1))/180))) , 0);
     	SmartDashboard.putNumber("angle", angle);
     	SmartDashboard.putData("Gyro", RobotMap.imu);
     }

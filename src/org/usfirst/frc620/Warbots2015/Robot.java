@@ -109,7 +109,9 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
-		autonomousCommand = (Command) autoChooser.getSelected();
+		
+		autonomousCommand = new doNothing();
+		//autonomousCommand = (Command) autoChooser.getSelected();
 		if (autonomousCommand != null) autonomousCommand.start();
 		//		cameraInit();
 		System.out.println("autonomous init: " + autoChooser.getSelected().toString());

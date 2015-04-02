@@ -42,7 +42,7 @@ public class  lowerPicker extends Command {
 	}
 
 	protected void execute() {
-		Robot.picker.setSpeed(.5);
+		Robot.picker.setSpeed(-.5);
     	now = timer.getFPGATimestamp();
 	}
 
